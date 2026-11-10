@@ -1,0 +1,16 @@
+<h3>Result for {{ student.name }} ({{ student.student_id }})</h3>
+{% set passed = student.passed() %}
+<p class="result-summary">
+  <strong>Total {{ student.total() }}/500</strong>
+  <strong>Grade {{ student.grade() }}</strong>
+  <strong class="{{ 'result-pass' if passed else 'result-fail' }}">
+    {{ 'Pass' if passed else 'Fail' }}
+  </strong>
+</p>
+<p>Average {{ '%.2f'|format(student.average()) }}/100
+   · Percentage {{ '%.2f'|format(student.percentage()) }}%</p>
+<ul>
+  {% for subject in subjects %}
+    <li>{{ subject }} — {{ student.marks[loop.index0] }}/100</li>
+  {% endfor %}
+</ul>

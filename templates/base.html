@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Student Result Manager{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='student_results_style.css') }}">
+</head>
+<body>
+  <h1>Student Result Manager</h1>
+  <nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    {% if session.get('role') == 'admin' %}
+      · <a href="{{ url_for('admin_dashboard') }}">Class performance</a>
+      · <a href="{{ url_for('admin_add_student') }}">Add a student</a>
+      · <a href="{{ url_for('admin_search') }}">Search by ID</a>
+    {% elif session.get('role') == 'student' %}
+      · <a href="{{ url_for('student_result') }}">My result</a>
+    {% endif %}
+  </nav>
+  {% if session.get('role') %}
+    <form action="{{ url_for('logout') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button type="submit">Log out</button>
+    </form>
+  {% endif %}
+  {% for message in get_flashed_messages() %}
+    <p role="status">{{ message }}</p>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</body>
+</html>

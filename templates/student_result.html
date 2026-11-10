@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}My result{% endblock %}
+{% block content %}
+<section>
+  <h2>My result</h2>
+  <p>Enter the student ID given to you by the coaching centre.</p>
+  <form method="get" action="{{ url_for('student_result') }}">
+    <label>Student ID <input name="student_id" value="{{ entered_id }}" required></label>
+    <button type="submit">Show result</button>
+  </form>
+  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+  {% if student %}{% include "result_details.html" %}{% endif %}
+  <p><a href="{{ url_for('student_change_password') }}">Change password</a></p>
+</section>
+{% endblock %}

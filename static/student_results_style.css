@@ -1,0 +1,107 @@
+/* Theme colors */
+:root {
+  --page: #f3f6fa;
+  --surface: #ffffff;
+  --text: #182536;
+  --border: #ccd6e0;
+  --input-border: #8496a7;
+  --accent: #155474;
+  --summary: #e8f1f7;
+  --success: #216044;
+  --error: #9b1d25;
+}
+
+/* Page layout */
+body {
+  max-width: 56rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font: 17px/1.5 system-ui, sans-serif;
+  background: var(--page);
+  color: var(--text);
+}
+
+section {
+  margin: 1rem 0;
+  padding: 1rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+h1, h2, h3 {
+  margin: 0 0 .5rem;
+}
+
+ul {
+  margin: .3rem 0 1rem;
+  padding-left: 1.25rem;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: .5rem;
+  line-height: 1.8;
+}
+
+nav a {
+  color: var(--accent);
+}
+
+/* Forms and buttons */
+.grid {
+  display: grid;
+  gap: .7rem;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+label {
+  display: block;
+  font-weight: 600;
+}
+
+input, select, button {
+  padding: .35rem .6rem;
+  font: inherit;
+  border-radius: 4px;
+}
+
+input, select {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--input-border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+button {
+  margin-top: .7rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--surface);
+}
+
+a:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Results and messages */
+.result-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.25rem;
+  margin: .65rem 0;
+  padding: .6rem .8rem;
+  background: var(--summary);
+  border-radius: 4px;
+}
+
+.result-pass {
+  color: var(--success);
+}
+
+.result-fail, .error {
+  color: var(--error);
+  font-weight: 700;
+}

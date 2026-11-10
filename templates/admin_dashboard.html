@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Class performance{% endblock %}
+{% block content %}
+<section>
+  <h2>Class performance</h2>
+  {% if summary %}
+    <p>Students {{ summary.count }} · Passed {{ summary.passed }} · Failed {{ summary.failed }}</p>
+    <p>Pass rate {{ '%.2f'|format(summary.pass_rate) }}%
+       · Class average {{ '%.2f'|format(summary.average_percentage) }}%</p>
+    {% for title, students in [('Highest total', highest), ('Lowest total', lowest)] %}
+      <h3>{{ title }}</h3>
+      <ul>
+        {% for record in students %}
+          <li>{{ record.name }} ({{ record.student_id }}) — {{ record.total() }}/500</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% else %}
+    <p>No class report available.</p>
+  {% endif %}
+</section>
+{% endblock %}
